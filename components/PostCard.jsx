@@ -10,7 +10,6 @@ const PostCard = ({ post }) => {
 
   const dateCreated = moment(post.createdAt)
 
-  console.log(post)
   return (
     <div className='bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8'>
       <div className="h-80 rounded-t-lg lg:rounded-lg shadow-md mb-6 overflow-hidden">

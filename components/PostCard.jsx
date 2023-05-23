@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment/moment'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const PostCard = ({ post }) => {
 
@@ -23,7 +24,7 @@ const PostCard = ({ post }) => {
         </Link>
         <div className='lg:flex text-center items-center justify-center mb-8 w-full'>
           <div className="flex items-center mb-4 justify-center lg:mb-0 w-full lg:w-auto">
-            <img src={post.author?.photo.url} alt={post.author.name} className='w-[30px] h-[30px]' />
+            <Image src={post.author?.photo.url} alt={post.author.name} width={30} height={30} />
             <p className='inline align-middle text-gray-700 ml-2 text-lg'>{post.author.name}</p>
           </div>
           <div className='fomt-medium text-gray-700'>

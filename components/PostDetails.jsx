@@ -1,4 +1,5 @@
 import moment from "moment/moment"
+import Image from "next/image"
 import React, { Fragment } from "react"
 
 const PostDetails = ({ post }) => {
@@ -27,16 +28,16 @@ const PostDetails = ({ post }) => {
       case 'heading-one':
         return <h1 key={index} className="text-3xl font-semibold text-center mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h1>;
       case 'heading-two':
-        return <h2 key={index} className="text-2xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h2>;
+        return <h2 key={index} className="text-2xl font-semibold mb-4">{modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}</h2>;
       case 'heading-three':
-        return <h3 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h3>;
+        return <h3 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}</h3>;
       case 'paragraph':
-        return <p key={index} className="mb-8">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</p>;
+        return <p key={index} className="mb-8">{modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}</p>;
       case 'heading-four':
-        return <h4 key={index} className="text-md font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h4>;
+        return <h4 key={index} className="text-md font-semibold mb-4">{modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}</h4>;
       case 'image':
         return (
-          <img
+          <Image
             key={index}
             alt={obj.title}
             height={obj.height}
@@ -64,7 +65,6 @@ const PostDetails = ({ post }) => {
     return getContentFragment(textIndex, children, textObj, textObj.type)
   })
 
-  console.log(postContent)
 
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
@@ -72,13 +72,15 @@ const PostDetails = ({ post }) => {
         <img
           src={post.featuredImage.url}
           alt={post.title}
-          className="bject-top h-full w-full rounded-t-lg"
+          fill
+          quality={20}
+          className="object-top rounded-t-lg"
         />
       </div>
       <div className="px-4 lg:px-0">
         <div className="flex items-center mb-8 w-full">
           <div className="flex items-center mb-4 lg:mb-0 w-full lg:w-auto">
-            <img src={post.author?.photo.url} alt={post.author.name} className='w-[30px] h-[30px]' />
+            <Image src={post.author?.photo.url} alt={post.author.name} height={30} width={30} />
             <p className='inline align-middle text-gray-700 ml-2 text-lg'>{post.author.name}</p>
           </div>
           <div className=' font-medium text-gray-700'>

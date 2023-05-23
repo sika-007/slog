@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import { PostCard, Categories, PostWidget } from '@/components'
-import { getPosts, getRecentPosts } from '@/services'
+import { getPosts } from '@/services'
 
 const inter = Inter({ subsets: ['latin'] })
 

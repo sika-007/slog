@@ -49,7 +49,6 @@ const PostDetails = ({ post }) => {
     }
   }
 
-  // console.log(post.content.raw.children)
 
 
 

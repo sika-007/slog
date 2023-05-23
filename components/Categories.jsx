@@ -10,7 +10,6 @@ const Categories = () => {
     getCategories()
       .then(data => {
         setCategories(data.categories)
-        console.log(categories)
       })
       .catch(err => console.error(err))
   }, [])

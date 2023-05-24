@@ -72,7 +72,6 @@ const PostDetails = ({ post }) => {
         <img
           src={post.featuredImage.url}
           alt={post.title}
-          fill
           quality={20}
           className="object-top rounded-t-lg"
         />

@@ -35,7 +35,7 @@ const PostCard = ({ post }) => {
           </div>
         </div>
         <p className='text-center text-sm'>{post.excerpt}</p>
-        <button className='text-center transition duration-200 hover:bg-secondary hover:translate-y-1 hover:scale-105 inline-block bg-primary text-lg font-medium rounded-full px-4 py-1 mt-3 text-white'>
+        <button className='text-center transition duration-100 hover:bg-secondary hover:translate-y-1 hover:scale-105 inline-block bg-primary text-lg font-medium rounded-full px-4 py-1 mt-3 text-white'>
           <Link href={`/post/${post.slug}`}>
             Continue reading
           </Link>

@@ -1,11 +1,12 @@
 import { comment } from "postcss"
 import { useState, useEffect, useRef } from "react"
 import { submitComment } from "@/services"
+import { localeData } from "moment"
 
 const CommentsForm = ({ slug }) => {
 
   const [error, setError] = useState("")
-  const [localStorage, setLocalStorage] = useState(false)
+  const [saveData, setSaveData] = useState(false)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [showLoading, setShowLoading] = useState(false)
   const commentRef = useRef()
@@ -13,8 +14,30 @@ const CommentsForm = ({ slug }) => {
   const nameRef = useRef()
   const dataStoreRef = useRef()
 
+  function handleCheckChange(event) {
+    if (event.target.checked) {
+      setSaveData(true)
+      localStorage.setItem("saveData", JSON.stringify(true))
+    } else {
+      setSaveData(false)
+      localStorage.setItem("saveData", JSON.stringify(false))
+    }
+  }
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("saveData"))) {
+      dataStoreRef.current.checked = true
+      nameRef.current.value = JSON.parse(localStorage.getItem("name"))
+      emailRef.current.value = JSON.parse(localStorage.getItem("email"))
+    } else {
+      dataStoreRef.current.checked = false
+      localStorage.removeItem("name")
+      localStorage.removeItem("email")
+    }
+  }, [])
+
   function handleCommentSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
 
     const comment = commentRef.current.value
     const name = nameRef.current.value
@@ -52,19 +75,18 @@ const CommentsForm = ({ slug }) => {
         }, 5000)
       })
       .catch((err) => {
-        console.log(err)
+        console.error(err)
         setShowLoading(false)
         setError("Something went wrong! Please try again later")
         setTimeout(() => {
           setError("")
         }, 5000)
       })
-
   }
 
   return (
     <form onSubmit={(e) => handleCommentSubmit(e)} className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
-      <h3 className="text-xl mb-8 font-semibold border-b pb-4"> Comments Section </h3>
+      <h3 className="text-xl mb-8 font-semibold border-b pb-4"> Leave a Comment </h3>
       <div className="gap-4 mb-4">
         <textarea
           ref={commentRef}
@@ -91,7 +113,7 @@ const CommentsForm = ({ slug }) => {
       </div>
       <div className="grid grid-cols-1 gap-4 mb-4">
         <div>
-          <input ref={dataStoreRef} className="accent-secondary" defaultChecked type="checkbox" id="storeData" name="storeData" />
+          <input ref={dataStoreRef} className="accent-secondary" type="checkbox" id="storeData" checked={saveData} onChange={(e) => handleCheckChange(e)} name="storeData" />
           <label className="ml-2 text-xs text-gray-500 cursor-pointer" htmlFor="storeData">Save email and name for my next comment</label>
         </div>
       </div>

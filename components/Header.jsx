@@ -34,13 +34,13 @@ const Header = () => {
 						</Link>
 					))}
 				</div>
-				<div className="md:hidden">
+				<div className="md:hidden relative">
 					<div onClick={() => setShowMenu(prev => !prev)} className="flex flex-col items-end gap-y-1">
 						<div className={`h-1 w-6 bg-white duration-100 transition-all ${showMenu && "rotate-45 translate-y-2"}`} />
 						<div className={`h-1 w-5 bg-white transition-all duration-200 ${showMenu && "rotate-45 opacity-0"}`} />
 						<div className={`h-1 ${showMenu ? "w-6" : "w-4"} duration-300 bg-white transition-all ${showMenu && "-rotate-45 -translate-y-2"}`} />
 					</div>
-					<div className={`absolute transition-all bg-black bg-opacity-25 hover:bg-opacity-40 p-4 top-20 right-5 ${showMenu ? "translate-x-0" : "translate-x-36"}`}>
+					<div className={`absolute transition-all bg-black bg-opacity-25 hover:bg-opacity-40 p-4 top-10 -right-4 z-10 ${showMenu ? "translate-y-0" : "translate-y-10 opacity-0"}`}>
 						{categories.map(category => (
 							<Link key={category.slug} href={`/category/${category.slug}`}>
 								<p className="md:float-right mt-2 align-middle text-white">

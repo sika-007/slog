@@ -3,34 +3,34 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
 
 export const getPosts = async () => {
 	const query = gql`
-	query Assets {
-		postsConnection {
-			edges {
-				node {
-					createdAt
-					slug
-					title
-					excerpt
-					featuredImage {
-						url
-					}
-					author {
-						bio
-						id
-						name
-						photo {
+		query Assets {
+			postsConnection {
+				edges {
+					node {
+						createdAt
+						slug
+						title
+						excerpt
+						featuredImage {
 							url
 						}
-					}
-					categories {
-						name
-						slug
+						author {
+							bio
+							id
+							name
+							photo {
+								url
+							}
+						}
+						categories {
+							name
+							slug
+						}
 					}
 				}
 			}
-		}
-	}	
-`
+		}	
+	`
 	const result = await request(graphqlAPI, query)
 	return result.postsConnection.edges
 }
@@ -112,7 +112,7 @@ export const getPostDetails = async (slug) => {
 					slug
 				}
 				content {
-					raw
+					html
 				}
 			}
 		}
@@ -147,7 +147,7 @@ export const getComments = async (slug) => {
 	return result.comments
 }
 
-export const getFeaturedPosts = async() => {
+export const getFeaturedPosts = async () => {
 	const query = gql`
 		query getFeaturedPosts {
 			posts(where: {featuredPost: true}) {
@@ -170,3 +170,37 @@ export const getFeaturedPosts = async() => {
 	const result = await request(graphqlAPI, query)
 	return result.posts
 }
+
+export const getCategoryPosts = async (slug) => {
+	const query = gql`
+		query getCategoryPosts($slug: String!) {
+			postsConnection(where: {categories_some: {slug: $slug}}) {
+				edges {
+					node {
+						createdAt
+						slug
+						title
+						excerpt
+						featuredImage {
+							url
+						}
+						author {
+							bio
+							id
+							name
+							photo {
+								url
+							}
+						}
+						categories {
+							name
+							slug
+						}
+					}
+				}
+			}
+		}
+	`
+	const result = await request(graphqlAPI, query, {slug})
+	return result.postsConnection.edges
+} 

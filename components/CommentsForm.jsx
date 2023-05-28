@@ -1,10 +1,7 @@
-import { comment } from "postcss"
 import { useState, useEffect, useRef } from "react"
 import { submitComment } from "@/services"
-import { localeData } from "moment"
 
 const CommentsForm = ({ slug }) => {
-
   const [error, setError] = useState("")
   const [saveData, setSaveData] = useState(false)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
@@ -23,10 +20,14 @@ const CommentsForm = ({ slug }) => {
       localStorage.setItem("saveData", JSON.stringify(false))
     }
   }
+  
+  useEffect(() => {
+    commentRef.current.value = ""
+  }, [slug])
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("saveData"))) {
-      dataStoreRef.current.checked = true
+      setSaveData(true)
       nameRef.current.value = JSON.parse(localStorage.getItem("name"))
       emailRef.current.value = JSON.parse(localStorage.getItem("email"))
     } else {
@@ -36,6 +37,8 @@ const CommentsForm = ({ slug }) => {
     }
   }, [])
 
+  console.log(saveData)
+  
   function handleCommentSubmit(event) {
     event.preventDefault()
 
@@ -65,6 +68,7 @@ const CommentsForm = ({ slug }) => {
       window.localStorage.removeItem("email");
     }
 
+
     submitComment(commentObj)
       .then((res) => {
         setShowSuccessMessage(true)
@@ -73,6 +77,7 @@ const CommentsForm = ({ slug }) => {
         setTimeout(() => {
           setShowSuccessMessage(false)
         }, 5000)
+        commentRef.current.value = ""
       })
       .catch((err) => {
         console.error(err)
@@ -113,7 +118,14 @@ const CommentsForm = ({ slug }) => {
       </div>
       <div className="grid grid-cols-1 gap-4 mb-4">
         <div>
-          <input ref={dataStoreRef} className="accent-secondary" type="checkbox" id="storeData" checked={saveData} onChange={(e) => handleCheckChange(e)} name="storeData" />
+          <input ref={dataStoreRef} 
+            className="accent-secondary" 
+            type="checkbox" 
+            id="storeData" 
+            checked={saveData} 
+            onChange={(e) => handleCheckChange(e)} 
+            name="storeData" 
+          />
           <label className="ml-2 text-xs text-gray-500 cursor-pointer" htmlFor="storeData">Save email and name for my next comment</label>
         </div>
       </div>

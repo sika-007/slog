@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
+    "dom-parser-react": "^0.2.2",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
     "graphql": "^16.6.0",

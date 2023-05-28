@@ -15,7 +15,7 @@ const Categories = () => {
   }, [])
 
   const categoryItems = categories?.map(category => (
-    <Link key={category.slug} href={`/categpries/${category.slug}`}>
+    <Link key={category.slug} href={`/categories/${category.slug}`}>
       <p className="cursor-pointer block pb-3 mb-3">
         {category.name}
       </p>

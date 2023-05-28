@@ -27,7 +27,7 @@ const Header = () => {
 				</div>
 				<div className="hidden md:flex gap-4">
 					{categories.map(category => (
-						<Link key={category.slug} href={`/category/${category.slug}`}>
+						<Link key={category.slug} href={`/categories/${category.slug}`}>
 							<p className="md:float-right mt-2 align-middle text-white font-semibold">
 								{category.name}
 							</p>
@@ -42,7 +42,7 @@ const Header = () => {
 					</div>
 					<div className={`absolute transition-all bg-black bg-opacity-25 hover:bg-opacity-40 p-4 top-10 -right-4 z-10 ${showMenu ? "translate-y-0" : "translate-y-10 opacity-0"}`}>
 						{categories.map(category => (
-							<Link key={category.slug} href={`/category/${category.slug}`}>
+							<Link key={category.slug} href={`/categories/${category.slug}`}>
 								<p className="md:float-right mt-2 align-middle text-white">
 									{category.name}
 								</p>

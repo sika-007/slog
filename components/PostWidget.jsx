@@ -22,6 +22,8 @@ const PostWidget = ({ categories, slug }) => {
     }
   }, [slug])
 
+  console.log(relatedPosts)
+
   const postItems = relatedPosts.map((post) => (
     <div key={post.title} className='flex items-center w-full mb-4'>
       <div className="w-16 flex-none">
@@ -32,7 +34,7 @@ const PostWidget = ({ categories, slug }) => {
           {post.title.length > 51 ? (post.title.slice(0,50) + "...") : (post.title)}
         </Link>
         <p className='text-gray-500 text-xs'>
-          {moment(relatedPosts[1]?.createdAt).format("MMM DD, YYYY.")}
+          {moment(post.createdAt).format("MMM DD, YYYY.")}
         </p>
       </div>
     </div>

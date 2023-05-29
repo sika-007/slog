@@ -44,6 +44,24 @@ body
     &:hover
       width: 60px
 
+.featured-posts-tape::-webkit-scrollbar
+  @apply h-1 rounded-full bg-primary
+
+.featured-posts-tape::-webkit-scrollbar-thumb
+  @apply bg-secondary
+
+body::-webkit-scrollbar
+  @apply bg-transparent w-1
+
+body::-webkit-scrollbar-track-piece
+  @apply bg-secondary
+
+body::-webkit-scrollbar-track
+  @appy bg-
+
+body::-webkit-scrollbar-thumb
+  @apply bg-primary rounded-full
+
 a
   color: inherit
   text-decoration: none
@@ -51,3 +69,27 @@ a
 *
   box-sizing: border-box
   scroll-behavior: smooth
+
+.blogpost-parent
+  h1
+    @apply text-3xl font-semibold text-center mb-4
+  h2
+    @apply text-2xl font-semibold mb-4 text-center
+  h3
+    @apply text-xl font-semibold mb-4
+  h4
+    @apply text-base font-semibold mb-4
+  pre
+    @apply bg-gray-300 rounded-sm mb-3 px-5 border-2 border-gray-400
+    code
+      @apply border-none
+      p
+        code
+          @apply border-none
+  p
+    @apply mb-8
+  & code
+    @apply bg-gray-300 px-1 rounded-sm border border-gray-400
+  ol
+    li
+      @apply list-outside ml-5 list-decimal

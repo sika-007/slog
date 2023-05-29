@@ -32,11 +32,11 @@ export default function Home({ posts }) {
         <div className='relative col-span-1 justify-self-auto lg:col-span-12 bg-black bg-opacity-25 shadow-lg rounded-lg p-8 lg:mb-6'>
           <FeaturedPost />
         </div>
-        <div className='lg:col-span-8 col-span-1'>
+        <div className='lg:col-span-8 lg:h-screen overflow-auto col-span-1 relative top-4'>
           {posts.map(post => <PostCard post={post.node} key={post.node.title} />)}
         </div>
-        <div className='lg:col-span-4 col-span-1'>
-          <div className='lg:sticky relative top-8'>
+        <div className='lg:col-span-4 lg:h-screen overflow-auto col-span-1'>
+          <div className='relative top-4'>
             <PostWidget />
             <Categories />
           </div>

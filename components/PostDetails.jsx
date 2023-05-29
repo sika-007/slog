@@ -1,6 +1,5 @@
 import moment from "moment/moment"
 import Image from "next/image"
-import React, { Fragment, useEffect, useState } from "react"
 import DOMParserReact from "dom-parser-react"
 
 const PostDetails = ({ post }) => {
